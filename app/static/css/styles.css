@@ -1,0 +1,157 @@
+/* 
+ * Yenilenebilir Enerji İstatistikleri CSS Dosyası
+ * MVVM mimarisi ile yazılmış web uygulaması için stillendirme
+ */
+
+/* Genel Stillendirme */
+:root {
+    --primary-color: #0d6efd;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 70px;
+}
+
+section {
+    padding: 60px 0;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+/* Navbar Stillendirme */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+/* Kartlar */
+.card {
+    border-radius: 10px;
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-header {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    font-weight: 600;
+}
+
+/* İkonlar */
+.display-4 {
+    font-size: 3rem;
+}
+
+/* Yükleme Göstergeleri */
+.loading-placeholder {
+    position: relative;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading-animation 1.5s infinite;
+    color: transparent;
+    border-radius: 4px;
+}
+
+@keyframes loading-animation {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Tablo Stillendirme */
+.table th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* Ülke Detayları Bölümü */
+.country-details {
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.country-details.d-none {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.country-details:not(.d-none) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Trend Göstergeleri */
+.trend-positive {
+    color: var(--success-color);
+}
+
+.trend-negative {
+    color: var(--danger-color);
+}
+
+.trend-neutral {
+    color: var(--dark-color);
+}
+
+.progress-bar {
+    transition: width 1s ease-in-out;
+}
+
+.progress-bar-positive {
+    background-color: var(--success-color);
+}
+
+.progress-bar-negative {
+    background-color: var(--danger-color);
+}
+
+/* Grafikler */
+#country-chart {
+    min-height: 300px;
+}
+
+/* Mobil Responsive */
+@media (max-width: 767.98px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    h1.display-4 {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 40px 0;
+    }
+    
+    .card {
+        margin-bottom: 15px;
+    }
+} 

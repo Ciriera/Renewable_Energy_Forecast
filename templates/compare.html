@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ülke Karşılaştırma - Veri Analiz Platformu</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Veri Analiz Platformu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/compare">Karşılaştırma</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/analysis">Analiz</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="my-2">Ülke Karşılaştırma</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="comparison-select" class="form-label fw-bold">Ülke Seçin:</label>
+                            <select class="form-select form-select-lg" id="comparison-select">
+                                <option value="" selected disabled>Yükleniyor...</option>
+                            </select>
+                            <div id="selected-countries-container" class="mt-3">
+                                <p class="mb-2">Seçili Ülkeler:</p>
+                                <div class="d-flex flex-wrap gap-2" id="selected-countries"></div>
+                            </div>
+                            <div class="mt-3 text-muted">
+                                <small><i class="bi bi-info-circle me-1"></i> En az iki ülke seçerek karşılaştırma yapabilirsiniz.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4" id="comparison-details" style="display: none;">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="my-2">Karşılaştırma Sonuçları</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- İstatistik Kartları -->
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <h6 class="card-title text-muted">Ortalama Yenilenebilir Enerji Oranı</h6>
+                                        <h3 class="my-3" id="comparison-avg">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="visually-hidden">Yükleniyor...</span>
+                                            </div>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <h6 class="card-title text-muted">En Yüksek Değer</h6>
+                                        <h3 class="my-3" id="comparison-max">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="visually-hidden">Yükleniyor...</span>
+                                            </div>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <h6 class="card-title text-muted">En Düşük Değer</h6>
+                                        <h3 class="my-3" id="comparison-min">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="visually-hidden">Yükleniyor...</span>
+                                            </div>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <h6 class="card-title text-muted">Trend Analizi</h6>
+                                        <h3 class="my-3" id="comparison-trend-value">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="visually-hidden">Yükleniyor...</span>
+                                            </div>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Karşılaştırma grafiği -->
+                        <div class="mb-4">
+                            <h5>Yenilenebilir Enerji Tüketimi Karşılaştırması</h5>
+                            <div id="comparison-chart" style="height: 400px;"></div>
+                        </div>
+
+                        <!-- Karşılaştırma tablosu -->
+                        <div class="mt-5">
+                            <h5>Ülke Verileri Karşılaştırması</h5>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped" id="comparison-data-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Ülke</th>
+                                            <th scope="col">Ortalama</th>
+                                            <th scope="col">En Yüksek</th>
+                                            <th scope="col">En Düşük</th>
+                                            <th scope="col">Trend</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="comparison-table-body">
+                                        <tr>
+                                            <td colspan="5" class="text-center">
+                                                <div class="spinner-border text-primary" role="status">
+                                                    <span class="visually-hidden">Yükleniyor...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Yenilenebilir Enerji Oranı Trendi -->
+                        <div class="mt-5">
+                            <h5>Yenilenebilir Enerji Oranı Trendi</h5>
+                            <div id="trend-chart-container" style="height: 350px;" class="mt-3">
+                                <div class="d-flex justify-content-center align-items-center h-100">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Yükleniyor...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Yıllara Göre Veriler -->
+                        <div class="mt-5">
+                            <h5>Yıllara Göre Veriler</h5>
+                            <div id="yearly-data-container" class="table-responsive mt-3">
+                                <div class="d-flex justify-content-center py-4">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Yükleniyor...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 py-3">
+        <div class="container text-center">
+            <p class="mb-0">© 2023 Veri Analiz Platformu. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/comparison.js') }}"></script>
+</body>
+</html> 

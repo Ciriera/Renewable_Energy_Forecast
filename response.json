@@ -1,0 +1,167 @@
+{
+  "overview": {
+    "global_stats": {
+      "max": 98.3037057874586,
+      "mean": 31.672912806979596,
+      "median": 23.7825661368881,
+      "min": 0.0,
+      "std": 29.67698246847791,
+      "total_countries": 250,
+      "years_range": "1 - 26"
+    },
+    "global_trend": -0.5351913358216324,
+    "highest_chart": {
+      "datasets": [
+        {
+          "backgroundColor": "rgba(75, 192, 192, 0.2)",
+          "borderColor": "rgba(75, 192, 192, 1)",
+          "borderWidth": 1,
+          "data": [
+            95.6789242535879,
+            94.2859666089416,
+            92.163461141348,
+            89.357395570733,
+            89.0579489792097,
+            87.9854523585353,
+            86.9045483179462,
+            86.8517939369185,
+            86.6553742907747,
+            86.6356215634187
+          ],
+          "label": "Yenilenebilir Enerji Oran\u0131 (%)"
+        }
+      ],
+      "labels": [
+        "Burundi",
+        "Somalia",
+        "Ethiopia",
+        "Chad",
+        "Uganda",
+        "Zambia",
+        "Bhutan",
+        "Guinea-Bissau",
+        "Rwanda",
+        "Nigeria"
+      ]
+    },
+    "highest_countries": [
+      {
+        "country": "Burundi",
+        "value": 95.6789242535879
+      },
+      {
+        "country": "Somalia",
+        "value": 94.2859666089416
+      },
+      {
+        "country": "Ethiopia",
+        "value": 92.163461141348
+      },
+      {
+        "country": "Chad",
+        "value": 89.357395570733
+      },
+      {
+        "country": "Uganda",
+        "value": 89.0579489792097
+      },
+      {
+        "country": "Zambia",
+        "value": 87.9854523585353
+      },
+      {
+        "country": "Bhutan",
+        "value": 86.9045483179462
+      },
+      {
+        "country": "Guinea-Bissau",
+        "value": 86.8517939369185
+      },
+      {
+        "country": "Rwanda",
+        "value": 86.6553742907747
+      },
+      {
+        "country": "Nigeria",
+        "value": 86.6356215634187
+      }
+    ],
+    "lowest_chart": {
+      "datasets": [
+        {
+          "backgroundColor": "rgba(255, 99, 132, 0.2)",
+          "borderColor": "rgba(255, 99, 132, 1)",
+          "borderWidth": 1,
+          "data": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "label": "Yenilenebilir Enerji Oran\u0131 (%)"
+        }
+      ],
+      "labels": [
+        "Guam",
+        "Palau",
+        "Bahrain",
+        "Tuvalu",
+        "Oman",
+        "Cayman Islands",
+        "Kuwait",
+        "Gibraltar",
+        "Antigua and Barbuda",
+        "Northern Mariana Islands"
+      ]
+    },
+    "lowest_countries": [
+      {
+        "country": "Guam",
+        "value": 0.0
+      },
+      {
+        "country": "Palau",
+        "value": 0.0
+      },
+      {
+        "country": "Bahrain",
+        "value": 0.0
+      },
+      {
+        "country": "Tuvalu",
+        "value": 0.0
+      },
+      {
+        "country": "Oman",
+        "value": 0.0
+      },
+      {
+        "country": "Cayman Islands",
+        "value": 0.0
+      },
+      {
+        "country": "Kuwait",
+        "value": 0.0
+      },
+      {
+        "country": "Gibraltar",
+        "value": 0.0
+      },
+      {
+        "country": "Antigua and Barbuda",
+        "value": 0.0
+      },
+      {
+        "country": "Northern Mariana Islands",
+        "value": 0.0
+      }
+    ]
+  },
+  "success": true
+}

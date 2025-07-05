@@ -1,0 +1,160 @@
+/**
+ * Ana stil dosyası
+ */
+
+/* Genel stiller */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Özellik mühendisliği bölümü için stiller */
+#features-engineering {
+    background-color: #f8f9fa;
+}
+
+.feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-importance-container {
+    min-height: 400px;
+    position: relative;
+}
+
+.feature-chart-wrapper {
+    position: relative;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.top-features-card {
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.features-explanation {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+
+/* Özellik açıklama kartları */
+.feature-explanation-card {
+    border-left: 4px solid #1976d2;
+    background-color: rgba(33, 150, 243, 0.05);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 0 8px 8px 0;
+    transition: all 0.3s ease;
+}
+
+.feature-explanation-card:hover {
+    background-color: rgba(33, 150, 243, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature-explanation-card h5 {
+    color: #1976d2;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.feature-explanation-card p {
+    margin-bottom: 0;
+    color: #555;
+}
+
+/* Özellik bildirimi (toast) stili */
+.toast {
+    opacity: 0.95 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.toast .toast-header {
+    padding: 0.5rem 0.75rem;
+}
+
+.toast .toast-body {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+}
+
+/* Animasyonlu arka plan */
+.features-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    z-index: 0;
+}
+
+/* Ülke seçimi container */
+.country-select-container {
+    max-width: 250px;
+    margin-bottom: 20px;
+}
+
+/* Mobil düzenlemeler */
+@media (max-width: 768px) {
+    .country-select-container {
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .feature-importance-container {
+        min-height: 300px;
+    }
+    
+    .feature-chart-wrapper {
+        height: 300px;
+        padding: 10px;
+    }
+}
+
+/* Işıldama efekti */
+.feature-highlight {
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-highlight::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: rotate(30deg);
+    animation: shiningEffect 3s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes shiningEffect {
+    from { transform: translateX(-100%) rotate(30deg); }
+    to { transform: translateX(100%) rotate(30deg); }
+} 

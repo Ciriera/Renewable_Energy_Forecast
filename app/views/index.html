@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yenilenebilir Enerji Kaynakları Tüketimi</title>
+    
+    <!-- CSS Kütüphaneleri -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-recycle me-2"></i>
+                Yenilenebilir Enerji İstatistikleri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overview">Genel Bakış</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#country-data">Ülke Verileri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features-engineering">Özellik Mühendisliği</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#model-analysis">Model Analizi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#prediction">Gelecek Tahminleri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#comparison">Ülke Karşılaştırma</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Hakkında</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold">Yenilenebilir Enerji Tüketimi İstatistikleri</h1>
+                    <p class="lead">Ülkelerin yenilenebilir enerji tüketimini keşfedin, karşılaştırın ve gelecek tahminlerini görün. Tüm veriler yüzde olarak toplam enerji tüketimi içindeki yenilenebilir enerji kaynaklarının oranını göstermektedir.</p>
+                    <div class="mt-4">
+                        <a href="#country-data" class="btn btn-primary btn-lg me-2">
+                            <i class="bi bi-search me-2"></i>Ülke Verileri
+                        </a>
+                        <a href="#prediction" class="btn btn-success btn-lg me-2">
+                            <i class="bi bi-graph-up-arrow me-2"></i>Tahminler
+                        </a>
+                        <a href="#about" class="btn btn-outline-secondary btn-lg">
+                            <i class="bi bi-info-circle me-2"></i>Hakkında
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="{{ url_for('static', filename='img/renewable-energy.svg') }}" alt="Yenilenebilir Enerji" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Genel Bakış Bölümü -->
+    <section id="overview" class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="text-center">Genel Bakış</h2>
+                    <p class="text-center text-muted">Yenilenebilir enerji tüketimi hakkında genel istatistikler</p>
+                </div>
+            </div>
+            
+            <div class="row mb-4" id="overview-stats">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-globe display-4 text-primary"></i>
+                            <h3 class="card-title mt-3 loading-placeholder">--</h3>
+                            <p class="card-text text-muted">Toplam Ülke Sayısı</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-percent display-4 text-success"></i>
+                            <h3 class="card-title mt-3 loading-placeholder">--%</h3>
+                            <p class="card-text text-muted">Ortalama Yenilenebilir Enerji Oranı</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-calendar-range display-4 text-info"></i>
+                            <h3 class="card-title mt-3 loading-placeholder">--</h3>
+                            <p class="card-text text-muted">Kapsanan Yıl Aralığı</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">En Yüksek Yenilenebilir Enerji Oranına Sahip Ülkeler</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="top-countries-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Ülke</th>
+                                            <th scope="col">Yenilenebilir Oran</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="loading-placeholder"><td colspan="3" class="text-center">Yükleniyor...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">En Düşük Yenilenebilir Enerji Oranına Sahip Ülkeler</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="bottom-countries-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Ülke</th>
+                                            <th scope="col">Yenilenebilir Oran</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="loading-placeholder"><td colspan="3" class="text-center">Yükleniyor...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Özellik Mühendisliği Bölümü -->
+    <section id="features-engineering" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 text-center">
+                    <h2 class="fw-bold display-5">Özellik Mühendisliği</h2>
+                    <p class="lead text-muted">Veri setinde kullanılan özellikler ve bunların modelin performansına etkileri</p>
+                </div>
+            </div>
+            
+            <!-- Ülke Seçim Alanı -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <label for="feature-country-select" class="form-label">Ülke Seçin:</label>
+                            <select id="feature-country-select" class="form-select country-select mb-3">
+                                <option value="loading" disabled selected>Ülkeler yükleniyor...</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Özellik Önem Derecesi Grafiği -->
+                <div class="col-lg-8">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Özellik Önem Derecesi</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="feature-importance-chart" style="min-height: 400px;">
+                                <div class="d-flex justify-content-center align-items-center h-100">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Yükleniyor...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- En Önemli Özellikler Listesi -->
+                <div class="col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">En Önemli Özellikler</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="feature-importance-list" class="list-group">
+                                <div class="d-flex justify-content-center align-items-center h-100">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Yükleniyor...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Özellik Önem Özeti -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div id="feature-importance-summary">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Özellik Önem Özeti</h5>
+                                <div class="text-center my-3">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Yükleniyor...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-secondary text-white">
+                            <h5 class="mb-0">Özellik Mühendisliği Hakkında</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                Özellik mühendisliği, ham verilerden makine öğrenimi modellerinin performansını artıracak daha anlamlı 
+                                özellikler oluşturma sürecidir. Bu projede, aşağıdaki özellikler üzerinde çalışılmıştır:
+                            </p>
+                            
+                            <div class="row g-4 mt-3">
+                                <div class="col-md-6">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Yıl (Year)</h5>
+                                            <p class="card-text">Veri noktasının ait olduğu yıl. Zaman içindeki değişimleri yakalamak için önemli bir faktör.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Yıl (Kare)</h5>
+                                            <p class="card-text">Yıl değerinin karesi. Doğrusal olmayan, hızlanan veya yavaşlayan trendleri modellemek için eklenmiştir.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mt-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Yıl (Logaritmik)</h5>
+                                            <p class="card-text">Yıl değerinin logaritması. Uzun vadeli eğilimleri daha iyi yakalamak için dönüştürülmüştür.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mt-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Kıta</h5>
+                                            <p class="card-text">Ülkenin bulunduğu kıta. Bölgesel farklılıkların modelde temsil edilmesini sağlar.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info mt-4">
+                                <strong>Özellik Önemi Analizi:</strong> Yukarıdaki grafik, rastgele orman algoritması kullanılarak hesaplanan özellik önem derecelerini göstermektedir. Yüksek skorlar, o özelliğin yenilenebilir enerji tüketimini tahmin etmede daha önemli olduğunu gösterir.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ülke Verileri Bölümü -->
+    <section id="country-data" class="py-5 bg-light">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="text-center">Ülke Verileri</h2>
+                    <p class="text-center text-muted">Ülkeye göre yenilenebilir enerji tüketimi verilerini görüntüleyin</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <label for="country-select" class="form-label">Ülke Seçin:</label>
+                            <select class="form-select form-select-lg mb-3" id="country-select">
+                                <option value="" selected disabled>Bir ülke seçin</option>
+                                <!-- Ülkeler JavaScript ile doldurulacak -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="country-details" class="country-details d-none">
+                <div class="row mb-4">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="bi bi-bar-chart-line display-4 text-primary"></i>
+                                <h3 class="card-title mt-3" id="country-avg">--%</h3>
+                                <p class="card-text text-muted">Ortalama Yenilenebilir Enerji Oranı</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="bi bi-arrow-up-right display-4 text-success"></i>
+                                <h3 class="card-title mt-3" id="country-max">--%</h3>
+                                <p class="card-text text-muted">En Yüksek Değer</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="bi bi-arrow-down-right display-4 text-danger"></i>
+                                <h3 class="card-title mt-3" id="country-min">--%</h3>
+                                <p class="card-text text-muted">En Düşük Değer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-8 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h5 class="mb-0">Yenilenebilir Enerji Oranı Trendi</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="country-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0">Trend Analizi</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="trend-info">
+                                    <div class="trend-value mb-3">
+                                        <h4 id="trend-value">--%</h4>
+                                        <p class="text-muted" id="trend-description">İlk yıllardan son yıllara değişim</p>
+                                    </div>
+                                    
+                                    <div class="trend-indicator">
+                                        <div class="progress mb-3" style="height: 10px;">
+                                            <div id="trend-progress" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                        </div>
+                                        <p class="text-muted" id="trend-explanation">Trend açıklaması burada görünecek</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h5 class="mb-0">Yıllara Göre Veriler</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover" id="country-data-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Yıl</th>
+                                                <th scope="col">Yenilenebilir Enerji Oranı (%)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="loading-placeholder"><td colspan="2" class="text-center">Bir ülke seçin</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Analizi Bölümü -->
+    <section id="model-analysis" class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="text-center">Model Analizi</h2>
+                    <p class="text-center text-muted">Yenilenebilir enerji tahmin modeli performans metrikleri</p>
+                </div>
+            </div>
+            <!-- Model Sonuçları -->
+            <div id="model-result" class="mt-4">
+                <!-- JavaScript ile doldurulacak -->
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Yükleniyor...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gelecek Tahminleri Bölümü -->
+    <section id="prediction" class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="text-center">Gelecek Tahminleri</h2>
+                    <p class="text-center text-muted">Yenilenebilir enerji tüketimi gelecekteki tahminleri</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <label for="prediction-year" class="form-label">Tahmin Yılı:</label>
+                            <input type="number" class="form-control form-control-lg mb-3" id="prediction-year">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="prediction-result" class="prediction-result d-none">
+                <div class="row mb-4">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="bi bi-bar-chart-line display-4 text-primary"></i>
+                                <h3 class="card-title mt-3" id="predicted-avg">--%</h3>
+                                <p class="card-text text-muted">Tahmini Yenilenebilir Enerji Oranı</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="bi bi-arrow-up-right display-4 text-success"></i>
+                                <h3 class="card-title mt-3" id="predicted-max">--%</h3>
+                                <p class="card-text text-muted">En Yüksek Değer</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="bi bi-arrow-down-right display-4 text-danger"></i>
+                                <h3 class="card-title mt-3" id="predicted-min">--%</h3>
+                                <p class="card-text text-muted">En Düşük Değer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-8 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h5 class="mb-0">Tahmin Sonucu</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="prediction-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0">Tahmin Açıklaması</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="prediction-info">
+                                    <div class="prediction-value mb-3">
+                                        <h4 id="prediction-value">--%</h4>
+                                        <p class="text-muted" id="prediction-description">Tahmin açıklaması burada görünecek</p>
+                                    </div>
+                                    
+                                    <div class="prediction-indicator">
+                                        <div class="progress mb-3" style="height: 10px;">
+                                            <div id="prediction-progress" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                        </div>
+                                        <p class="text-muted" id="prediction-explanation">Tahmin açıklaması burada görünecek</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ülke Karşılaştırma Bölümü -->
+    <section id="comparison" class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="text-center">Ülke Karşılaştırma</h2>
+                    <p class="text-center text-muted">Ülkelerin yenilenebilir enerji tüketimlerini karşılaştırın</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <label for="comparison-select" class="form-label">Ülke Seçin:</label>
+                            <select class="form-select form-select-lg mb-3" id="comparison-select">
+                                <option value="" selected disabled>Bir ülke seçin</option>
+                                <!-- Ülkeler JavaScript ile doldurulacak -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="comparison-details" class="comparison-details d-none">
+                <div class="row mb-4">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="bi bi-bar-chart-line display-4 text-primary"></i>
+                                <h3 class="card-title mt-3" id="comparison-avg">--%</h3>
+                                <p class="card-text text-muted">Ortalama Yenilenebilir Enerji Oranı</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="bi bi-arrow-up-right display-4 text-success"></i>
+                                <h3 class="card-title mt-3" id="comparison-max">--%</h3>
+                                <p class="card-text text-muted">En Yüksek Değer</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="bi bi-arrow-down-right display-4 text-danger"></i>
+                                <h3 class="card-title mt-3" id="comparison-min">--%</h3>
+                                <p class="card-text text-muted">En Düşük Değer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-8 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h5 class="mb-0">Yenilenebilir Enerji Oranı Trendi</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="comparison-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0">Trend Analizi</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="trend-info">
+                                    <div class="trend-value mb-3">
+                                        <h4 id="comparison-trend-value">--%</h4>
+                                        <p class="text-muted" id="comparison-trend-description">İlk yıllardan son yıllara değişim</p>
+                                    </div>
+                                    
+                                    <div class="trend-indicator">
+                                        <div class="progress mb-3" style="height: 10px;">
+                                            <div id="comparison-trend-progress" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                        </div>
+                                        <p class="text-muted" id="comparison-trend-explanation">Trend açıklaması burada görünecek</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h5 class="mb-0">Yıllara Göre Veriler</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover" id="comparison-data-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Yıl</th>
+                                                <th scope="col">Yenilenebilir Enerji Oranı (%)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="loading-placeholder"><td colspan="2" class="text-center">Bir ülke seçin</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkında Bölümü -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="text-center">Proje Hakkında</h2>
+                    <p class="text-center text-muted">Bu uygulamanın amacı ve kullanılan veri kaynakları hakkında bilgi</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Veri Kaynağı</h5>
+                            <p class="card-text">
+                                Bu uygulama, Dünya Bankası'nın "Renewable energy consumption (% of total final energy consumption)" veri setini kullanmaktadır. 
+                                Veri seti, ülkelerin toplam enerji tüketimi içindeki yenilenebilir enerji kaynaklarının oranını göstermektedir.
+                            </p>
+                            
+                            <h5 class="card-title mt-4">Uygulama Mimarisi</h5>
+                            <p class="card-text">
+                                Uygulama, MVVM (Model-View-ViewModel) mimarisi kullanılarak geliştirilmiştir:
+                            </p>
+                            <ul>
+                                <li><strong>Model:</strong> Veri yükleme, işleme, model eğitimi ve analiz işlemlerini yürütür.</li>
+                                <li><strong>ViewModel:</strong> Model ile View arasında köprü görevi görerek verileri görüntüleme için hazırlar.</li>
+                                <li><strong>View:</strong> Kullanıcı arayüzünü oluşturur ve verileri görselleştirir.</li>
+                            </ul>
+                            
+                            <h5 class="card-title mt-4">Teknolojiler</h5>
+                            <p class="card-text">
+                                Bu proje aşağıdaki teknolojileri kullanmaktadır:
+                            </p>
+                            <ul>
+                                <li>Backend: Python, Flask, Pandas, Scikit-learn</li>
+                                <li>Frontend: HTML, CSS, JavaScript, Bootstrap 5</li>
+                                <li>Görselleştirme: Chart.js</li>
+                                <li>Makine Öğrenimi: Linear Regression, Random Forest</li>
+                            </ul>
+                            
+                            <h5 class="card-title mt-4">Özellikler</h5>
+                            <p class="card-text">
+                                Bu uygulama aşağıdaki özellikleri sunmaktadır:
+                            </p>
+                            <ul>
+                                <li>Ülkelere göre yenilenebilir enerji tüketimi analizi</li>
+                                <li>Zaman serisi verileri ve trend analizi</li>
+                                <li>Özellik mühendisliği ve önem analizi</li>
+                                <li>Makine öğrenimi modeli eğitimi ve performans değerlendirmesi</li>
+                                <li>Gelecek tahminleri</li>
+                                <li>Ülke karşılaştırmaları</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-primary text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Yenilenebilir Enerji İstatistikleri</h5>
+                    <p class="mb-0">Dünya genelinde yenilenebilir enerji tüketimi verilerini analiz eden bir uygulama.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">© 2023 Yenilenebilir Enerji Projesi</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Kütüphaneleri -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/features.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/model.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/prediction.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/comparison.js') }}"></script>
+</body>
+</html> 

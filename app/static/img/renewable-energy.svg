@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- Arka plan -->
+  <rect width="800" height="600" fill="#f8f9fa"/>
+  
+  <!-- Güneş -->
+  <circle cx="600" cy="150" r="60" fill="#FFC107"/>
+  <g>
+    <line x1="600" y1="70" x2="600" y2="50" stroke="#FFC107" stroke-width="8" stroke-linecap="round"/>
+    <line x1="600" y1="230" x2="600" y2="250" stroke="#FFC107" stroke-width="8" stroke-linecap="round"/>
+    <line x1="520" y1="150" x2="500" y2="150" stroke="#FFC107" stroke-width="8" stroke-linecap="round"/>
+    <line x1="680" y1="150" x2="700" y2="150" stroke="#FFC107" stroke-width="8" stroke-linecap="round"/>
+    <line x1="540" y1="90" x2="525" y2="75" stroke="#FFC107" stroke-width="8" stroke-linecap="round"/>
+    <line x1="660" y1="210" x2="675" y2="225" stroke="#FFC107" stroke-width="8" stroke-linecap="round"/>
+    <line x1="540" y1="210" x2="525" y2="225" stroke="#FFC107" stroke-width="8" stroke-linecap="round"/>
+    <line x1="660" y1="90" x2="675" y2="75" stroke="#FFC107" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Rüzgar Türbini -->
+  <line x1="150" y1="450" x2="150" y2="200" stroke="#495057" stroke-width="10"/>
+  <circle cx="150" cy="200" r="8" fill="#6c757d"/>
+  
+  <g transform="translate(150, 200)">
+    <!-- Türbin kanatları -->
+    <g>
+      <path d="M0,0 L-100,50 Q-110,20 -90,0 Q-110,-20 -100,-50 Z" fill="#0D6EFD" transform="rotate(0)"/>
+      <path d="M0,0 L-100,50 Q-110,20 -90,0 Q-110,-20 -100,-50 Z" fill="#0D6EFD" transform="rotate(120)"/>
+      <path d="M0,0 L-100,50 Q-110,20 -90,0 Q-110,-20 -100,-50 Z" fill="#0D6EFD" transform="rotate(240)"/>
+    </g>
+  </g>
+  
+  <!-- Yenilenebilir Enerji İkonu -->
+  <g transform="translate(400, 350)">
+    <circle cx="0" cy="0" r="100" fill="#e9ecef"/>
+    <g transform="scale(0.5)">
+      <!-- Geri dönüşüm ikonu -->
+      <path d="M-75,-30 L0,-100 L75,-30 L40,-30 L0,30 L-40,-30 Z" fill="#198754"/>
+      <path d="M-75,85 L-150,15 L-75,-55 L-75,-20 L0,80 L-75,40 Z" fill="#0D6EFD"/>
+      <path d="M150,15 L75,85 L0,15 L35,15 L0,-85 L75,-20 Z" fill="#FFC107"/>
+    </g>
+  </g>
+  
+  <!-- Su Dalgaları (Hidroelektrik) -->
+  <path d="M50,500 Q100,450 150,500 Q200,550 250,500 Q300,450 350,500 Q400,550 450,500 Q500,450 550,500 Q600,550 650,500 Q700,450 750,500 L750,600 L50,600 Z" fill="#0DCAF0" opacity="0.7"/>
+  
+  <!-- Biyokütle (Ağaç) -->
+  <g transform="translate(700, 400)">
+    <rect x="-10" y="0" width="20" height="50" fill="#6c757d"/>
+    <ellipse cx="0" cy="-30" rx="40" ry="50" fill="#198754"/>
+  </g>
+  
+  <!-- Jeotermal -->
+  <g transform="translate(300, 500)">
+    <path d="M-20,0 Q-10,-30 0,-20 Q10,-40 20,-10 Q30,-50 40,0" fill="none" stroke="#dc3545" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Metin -->
+  <text x="400" y="550" text-anchor="middle" fill="#212529" font-family="Arial" font-size="24" font-weight="bold">Yenilenebilir Enerji Kaynakları</text>
+</svg> 

@@ -1,0 +1,3 @@
+"""
+Models paketini tanımlar
+""" 

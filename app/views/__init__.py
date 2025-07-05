@@ -1,0 +1,3 @@
+"""
+Views paketini tanımlar
+""" 
