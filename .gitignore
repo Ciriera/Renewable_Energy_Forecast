@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Logs
+*.log
+app.log
+app_data.log
+app_viewmodel.log
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Local development settings
+.env
+
+# Database
+*.sqlite3
+*.db
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Flutter/Dart specific
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+*.iml
+*.iws
+.idea/
+.vscode/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~ 
