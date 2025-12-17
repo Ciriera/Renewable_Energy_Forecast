@@ -1,8 +1,16 @@
+"""
+DataViewModel Unit Testleri - MVVM Mimarisinin ViewModel Katmanı
+
+Bu test dosyası DataViewModel sınıfı için kapsamlı unit testler içerir.
+FIRST prensiplerine uygun olarak yazılmıştır ve anti-pattern'lerden kaçınır.
+"""
+
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, PropertyMock
 import sys
 import os
 import json
+import numpy as np
 
 # Projenin kök dizinini path'e ekle
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
@@ -10,13 +18,24 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 from app.data_viewmodel import DataViewModel
 from app.data_service import DataService
 
+
 class TestDataViewModel(unittest.TestCase):
-    """DataViewModel sınıfı için unit testler"""
+    """
+    DataViewModel sınıfı için unit testler.
+    Her test metodu tek bir davranışı test eder.
+    """
     
     def setUp(self):
-        """Her test öncesi çalıştırılacak kod"""
-        # DataService mocklanıyor
+        """
+        Her test öncesi çalıştırılacak setup metodu.
+        Mock DataService ile ViewModel oluşturur.
+        """
+        # DataService mocklanıyor - aşırı mock kullanımından kaçınıyoruz
         self.data_service_mock = MagicMock(spec=DataService)
+        # Temel özellikleri ayarla
+        self.data_service_mock.countries = ['Turkey', 'Germany', 'France']
+        self.data_service_mock.models = {}
+        self.data_service_mock.predictions_cache = {}
         self.viewmodel = DataViewModel(self.data_service_mock)
     
     def test_get_countries(self):
@@ -322,6 +341,298 @@ class TestDataViewModel(unittest.TestCase):
         
         # DataService'in get_countries_comparison metodunun doğru parametre ile çağrıldığını doğrula
         self.data_service_mock.get_countries_comparison.assert_called_once_with(countries)
+    
+    def test_get_countries_comparison_error(self):
+        """get_countries_comparison metodunun hata durumunu test et"""
+        # Mock hata oluştur
+        countries = ["Turkey", "Germany"]
+        self.data_service_mock.get_countries_comparison.side_effect = Exception("Comparison error")
+        
+        # Metodu çağır
+        result = self.viewmodel.get_countries_comparison(countries)
+        
+        # Sonucu kontrol et
+        self.assertFalse(result["success"])
+        self.assertIn("error", result)
+    
+    def test_get_feature_importance_valid_country(self):
+        """get_feature_importance metodu geçerli ülke ile test"""
+        # Mock veri hazırla
+        country_name = "Turkey"
+        mock_feature_data = {
+            "features": ["Yıl", "Ekonomik Durum", "Nüfus"],
+            "importance": [0.5, 0.3, 0.2]
+        }
+        self.data_service_mock.get_feature_importance.return_value = mock_feature_data
+        
+        # Metodu çağır
+        result = self.viewmodel.get_feature_importance(country_name)
+        
+        # Sonucu kontrol et
+        self.assertTrue(result["success"])
+        self.assertIn("chart_data", result)
+        self.assertIn("feature_list", result)
+        self.assertEqual(result["country"], country_name)
+        
+        # DataService'in get_feature_importance metodunun çağrıldığını doğrula
+        self.data_service_mock.get_feature_importance.assert_called_once_with(country_name)
+    
+    def test_get_feature_importance_global(self):
+        """get_feature_importance metodu global için test"""
+        # Mock veri hazırla
+        mock_feature_data = {
+            "features": ["Yıl", "Ülke", "Bölge"],
+            "importance": [0.4, 0.35, 0.25]
+        }
+        self.data_service_mock.get_feature_importance.return_value = mock_feature_data
+        
+        # Metodu çağır
+        result = self.viewmodel.get_feature_importance()
+        
+        # Sonucu kontrol et
+        self.assertTrue(result["success"])
+        self.assertEqual(result["country"], "Global")
+    
+    def test_get_feature_importance_error(self):
+        """get_feature_importance metodunun hata durumunu test et"""
+        # Mock hata oluştur
+        self.data_service_mock.get_feature_importance.side_effect = Exception("Feature error")
+        
+        # Metodu çağır
+        result = self.viewmodel.get_feature_importance("Turkey")
+        
+        # Sonucu kontrol et
+        self.assertFalse(result["success"])
+        self.assertIn("error", result)
+    
+    def test_train_model_valid_country(self):
+        """train_model metodu geçerli ülke ile test"""
+        # Mock veri hazırla
+        country_name = "Turkey"
+        mock_train_result = {
+            "success": True,
+            "country": country_name,
+            "metrics": {
+                "r2_score": 0.85,
+                "mae": 1.2,
+                "rmse": 1.5
+            },
+            "model": "RandomForest"
+        }
+        self.data_service_mock.train_model.return_value = mock_train_result
+        
+        # Metodu çağır
+        result = self.viewmodel.train_model(country_name)
+        
+        # Sonucu kontrol et
+        self.assertTrue(result["success"])
+        self.assertIn("message", result)
+        self.assertIn("metrics", result)
+        self.assertEqual(result["country"], country_name)
+        
+        # DataService'in train_model metodunun çağrıldığını doğrula
+        self.data_service_mock.train_model.assert_called_once_with(country_name)
+    
+    def test_train_model_general(self):
+        """train_model metodu genel model için test"""
+        # Mock veri hazırla
+        mock_train_result = {
+            "success": True,
+            "country": "general",
+            "metrics": {
+                "r2_score": 0.75,
+                "mae": 2.0,
+                "rmse": 2.5
+            }
+        }
+        self.data_service_mock.train_model.return_value = mock_train_result
+        
+        # Metodu çağır
+        result = self.viewmodel.train_model()
+        
+        # Sonucu kontrol et
+        self.assertTrue(result["success"])
+        self.assertEqual(result["country"], "general")
+    
+    def test_train_model_error(self):
+        """train_model metodunun hata durumunu test et"""
+        # Mock hata oluştur
+        self.data_service_mock.train_model.side_effect = Exception("Training error")
+        
+        # Metodu çağır
+        result = self.viewmodel.train_model("Turkey")
+        
+        # Sonucu kontrol et
+        self.assertFalse(result["success"])
+        self.assertIn("error", result)
+    
+    def test_get_data_overview_structure(self):
+        """get_data_overview metodu doğru yapıda veri döndürmeli"""
+        # Mock veri hazırla
+        mock_overview = {
+            "highest_countries": [
+                {"country": "Iceland", "value": 78.5}
+            ],
+            "lowest_countries": [
+                {"country": "Qatar", "value": 0.2}
+            ],
+            "global_stats": {
+                "min": 0.1,
+                "max": 98.5,
+                "mean": 18.3,
+                "total_countries": 180
+            },
+            "global_trend": 5.6
+        }
+        self.data_service_mock.get_data_overview.return_value = mock_overview
+        
+        # Metodu çağır
+        result = self.viewmodel.get_data_overview()
+        
+        # Sonucu kontrol et
+        self.assertTrue(result["success"])
+        self.assertIn("overview", result)
+        self.assertIsInstance(result["overview"], dict)
+    
+    def test_get_data_overview_error(self):
+        """get_data_overview metodunun hata durumunu test et"""
+        # Mock hata oluştur
+        self.data_service_mock.get_data_overview.side_effect = Exception("Overview error")
+        
+        # Metodu çağır
+        result = self.viewmodel.get_data_overview()
+        
+        # Sonucu kontrol et
+        self.assertFalse(result["success"])
+        self.assertIn("error", result)
+    
+    def test_get_country_data_chart_data_structure(self):
+        """get_country_data metodu chart_data yapısını doğru oluşturmalı"""
+        # Mock veri hazırla
+        country_name = "Turkey"
+        mock_country_data = {
+            "country": country_name,
+            "stats": {
+                "min": 10.5,
+                "max": 13.5,
+                "mean": 12.0,
+                "years": [1, 2, 3, 4, 5],
+                "values": [10.5, 11.2, 12.0, 12.8, 13.5]
+            },
+            "time_series": {
+                "1": 10.5,
+                "2": 11.2,
+                "3": 12.0
+            }
+        }
+        self.data_service_mock.get_country_data.return_value = mock_country_data
+        
+        # Metodu çağır
+        result = self.viewmodel.get_country_data(country_name)
+        
+        # Sonucu kontrol et
+        self.assertTrue(result["success"])
+        self.assertIn("chart_data", result)
+        self.assertIn("labels", result["chart_data"])
+        self.assertIn("datasets", result["chart_data"])
+        self.assertIsInstance(result["chart_data"]["labels"], list)
+        self.assertIsInstance(result["chart_data"]["datasets"], list)
+    
+    def test_get_country_data_nan_handling(self):
+        """get_country_data metodu NaN değerleri düzgün işlemeli"""
+        # Mock veri hazırla - NaN içeren
+        import numpy as np
+        mock_country_data = {
+            "country": "Turkey",
+            "stats": {
+                "min": 10.5,
+                "max": np.nan,  # NaN değer
+                "mean": 12.0,
+                "years": [1, 2, 3],
+                "values": [10.5, 11.2, 12.0]
+            },
+            "time_series": {
+                "1": 10.5,
+                "2": 11.2
+            }
+        }
+        self.data_service_mock.get_country_data.return_value = mock_country_data
+        
+        # Metodu çağır
+        result = self.viewmodel.get_country_data("Turkey")
+        
+        # Sonucu kontrol et - NaN değerler 0'a dönüştürülmeli
+        self.assertTrue(result["success"])
+        # Chart data içinde NaN olmamalı
+        if "chart_data" in result:
+            for dataset in result["chart_data"].get("datasets", []):
+                for value in dataset.get("data", []):
+                    self.assertFalse(np.isnan(value) if isinstance(value, (int, float)) else False)
+    
+    def test_get_country_prediction_future_year_validation(self):
+        """get_country_prediction metodu geçersiz yıl için hata döndürmeli"""
+        # Mock veri hazırla
+        country_name = "Turkey"
+        invalid_year = "invalid"
+        
+        # Metodu çağır
+        result = self.viewmodel.get_country_prediction(country_name, invalid_year)
+        
+        # Sonucu kontrol et
+        self.assertFalse(result["success"])
+        self.assertIn("error", result)
+    
+    def test_get_country_prediction_country_not_found(self):
+        """get_country_prediction metodu bulunamayan ülke için hata döndürmeli"""
+        # Mock veri hazırla
+        country_name = "NonExistentCountry"
+        self.data_service_mock.countries = ['Turkey', 'Germany']
+        
+        # Metodu çağır
+        result = self.viewmodel.get_country_prediction(country_name, 2030)
+        
+        # Sonucu kontrol et
+        self.assertFalse(result["success"])
+        self.assertIn("error", result)
+    
+    def test_get_model_metrics_structure(self):
+        """get_model_metrics metodu doğru yapıda veri döndürmeli"""
+        # Mock veri hazırla
+        country_name = "Turkey"
+        # get_model_metrics mock'lanmamış, gerçek implementasyonu test ediyoruz
+        # Bu test için mock eklenebilir
+        
+        # Metodu çağır
+        result = self.viewmodel.get_model_metrics(country_name)
+        
+        # Sonucu kontrol et
+        self.assertIsInstance(result, dict)
+        # Başarılı veya başarısız olabilir, yapı kontrol edilmeli
+        if result.get("success"):
+            self.assertIn("country", result)
+            self.assertIn("formatted_metrics", result)
+    
+    def test_viewmodel_initialization_without_service(self):
+        """DataViewModel None service ile başlatılabilmeli"""
+        # Arrange & Act
+        viewmodel = DataViewModel(data_service=None)
+        
+        # Assert
+        self.assertIsNotNone(viewmodel)
+        self.assertIsNotNone(viewmodel.data_service)
+    
+    def test_viewmodel_initialization_with_service(self):
+        """DataViewModel mevcut service ile başlatılabilmeli"""
+        # Arrange
+        service = MagicMock(spec=DataService)
+        
+        # Act
+        viewmodel = DataViewModel(data_service=service)
+        
+        # Assert
+        self.assertIsNotNone(viewmodel)
+        self.assertEqual(viewmodel.data_service, service)
+
 
 if __name__ == '__main__':
     unittest.main() 
