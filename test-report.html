@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Raporu - 2025-12-17 21:48:42</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-box {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .stat-box.success {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .stat-box.failure {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        .stat-box.info {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        .stat-box h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .stat-box .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .failed {
+            background-color: #fee;
+        }
+        .passed {
+            background-color: #efe;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ğŸ§ª Test Raporu</h1>
+            <p>OluÅŸturulma ZamanÄ±: 2025-12-17 21:48:42</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-box success">
+                <h3>âœ… BaÅŸarÄ±lÄ±</h3>
+                <div class="value">136</div>
+                <p>88.31%</p>
+            </div>
+            <div class="stat-box failure">
+                <h3>âŒ BaÅŸarÄ±sÄ±z</h3>
+                <div class="value">18</div>
+                <p>11.69%</p>
+            </div>
+            <div class="stat-box info">
+                <h3>ğŸ“Š Toplam</h3>
+                <div class="value">154</div>
+                <p>SÃ¼re: 14.02s</p>
+            </div>
+        </div>        <div class="section">
+            <h2 class="section-title">ğŸ“Š Genel Ä°statistikler</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metrik</th>
+                        <th>DeÄŸer</th>
+                        <th>YÃ¼zde</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="passed">
+                        <td><strong>âœ… BaÅŸarÄ±lÄ± Testler</strong></td>
+                        <td>136</td>
+                        <td>88.31%</td>
+                    </tr>
+                    <tr class="failed">
+                        <td><strong>âŒ BaÅŸarÄ±sÄ±z Testler</strong></td>
+                        <td>18</td>
+                        <td>11.69%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>âš ï¸ Hatalar</strong></td>
+                        <td>0</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>â­ï¸ Atlanan Testler</strong></td>
+                        <td>0</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ğŸ“Š Toplam Test</strong></td>
+                        <td>154</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>â±ï¸ Ã‡alÄ±ÅŸtÄ±rma SÃ¼resi</strong></td>
+                        <td>14.02 saniye</td>
+                        <td>-</td>
+                    </tr>                    <tr>
+                        <td><strong>ğŸ“ˆ Coverage</strong></td>
+                        <td>67%</td>
+                        <td>-</td>
+                    </tr>                </tbody>
+            </table>
+        </div>        <div class="section">
+            <h2 class="section-title">ğŸ“ Test DosyalarÄ± DetaylÄ± Ã–zeti</h2>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âŒ  app/test/unit/test_data_model.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataModel - Alternatif model katmani testleri</p>
+                <p><strong>Toplam Test:</strong> 3 | <strong>BaÅŸarÄ±lÄ±:</strong> 0 | <strong>BaÅŸarÄ±sÄ±z:</strong> 3 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 0%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #f44336; font-weight: bold;">âŒ BaÅŸarÄ±sÄ±z Testler (3)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li style="color: #f44336;">
+                            <strong>- model caching - AssertionError: False is not true</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- predict future valid inputs - AssertionError: False is not true</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- train model valid country - AssertionError: False is not true</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                    </ul>
+                </details>            </div>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âŒ  app/test/unit/test_data_service.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataService - Veri yukleme, isleme ve model egitimi testleri</p>
+                <p><strong>Toplam Test:</strong> 3 | <strong>BaÅŸarÄ±lÄ±:</strong> 0 | <strong>BaÅŸarÄ±sÄ±z:</strong> 3 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 0%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #f44336; font-weight: bold;">âŒ BaÅŸarÄ±sÄ±z Testler (3)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li style="color: #f44336;">
+                            <strong>- get countries empty data - Exception: Veri yüklenirken hata oluştu: CSV dosyası boş veya doğru yüklenemedi.</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get data overview empty data - Exception: Veri yüklenirken hata oluştu: CSV dosyası boş veya doğru yüklenemedi.</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- predict future invalid year - AssertionError: ValueError not raised</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                    </ul>
+                </details>            </div>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âŒ  app/test/unit/test_data_service_boundary.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataService - Veri yukleme, isleme ve model egitimi testleri</p>
+                <p><strong>Toplam Test:</strong> 3 | <strong>BaÅŸarÄ±lÄ±:</strong> 0 | <strong>BaÅŸarÄ±sÄ±z:</strong> 3 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 0%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #f44336; font-weight: bold;">âŒ BaÅŸarÄ±sÄ±z Testler (3)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li style="color: #f44336;">
+                            <strong>- train model with minimum data - ValueError: All arrays must be of the same length</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- predict future with string year - AssertionError: (&lt;class &#39;ValueError&#39;&gt;, &lt;class &#39;TypeError&#39;&gt;) not raised</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- load data with all nan values - Exception: Veri ön işleme sırasında hata oluştu: Veri uzun formata dönüştürülürken hata: Veri dönüşümü sonrası veri seti boş</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                    </ul>
+                </details>            </div>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âŒ  app/test/unit/test_data_utils.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataUtils - Yardimci fonksiyon testleri</p>
+                <p><strong>Toplam Test:</strong> 1 | <strong>BaÅŸarÄ±lÄ±:</strong> 0 | <strong>BaÅŸarÄ±sÄ±z:</strong> 1 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 0%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #f44336; font-weight: bold;">âŒ BaÅŸarÄ±sÄ±z Testler (1)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li style="color: #f44336;">
+                            <strong>- zero initial value - AssertionError: 250.0 != 0.0</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                    </ul>
+                </details>            </div>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âŒ  app/test/unit/test_data_viewmodel.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataViewModel - Veri formatlama ve API hazirlama testleri</p>
+                <p><strong>Toplam Test:</strong> 6 | <strong>BaÅŸarÄ±lÄ±:</strong> 0 | <strong>BaÅŸarÄ±sÄ±z:</strong> 6 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 0%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #f44336; font-weight: bold;">âŒ BaÅŸarÄ±sÄ±z Testler (6)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li style="color: #f44336;">
+                            <strong>- get countries comparison - AssertionError: False is not true</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get country data - AssertionError: &#39;stats&#39; not found in {&#39;success&#39;: True, &#39;country&#39;: &#39;Turkey&#39;, &#39;statistics&#39;: {&#39;min&#39;: 10.5, &#39;max&#39;: 30.2, &#39;mean&#39;: 20.1, &#39;median&#39;: 19.8, &#39;std&#39;: 5.2, &#39;last value&#39;: 29.8, &#39;trend&#39;: 15.3}, &#39;chart data&#39;: {&#39;labels&#39;: [2000, 2005, 2010, 2015, 2020], &#39;datasets&#39;: [{&#39;label&#39;: &#39;Yenilenebilir Enerji Tüketimi (%)&#39;, &#39;data&#39;: [15.2, 18.7, 22.4, 26.3, 29.8], &#39;borderColor&#39;: &#39;rgba(75, 192, 192, 1)&#39;, &#39;backgroundColor&#39;: &#39;rgba(75, 192, 192, 0.2)&#39;, &#39;fill&#39;: True}]}, &#39;years&#39;: [2000, 2005, 2010, 2015, 2020], &#39;values&#39;: [15.2, 18.7, 22.4, 26.3, 29.8]}</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get country data negative trend - KeyError: &#39;stats&#39;</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get country prediction - AssertionError: False is not true</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get data overview - AssertionError: &#39;highest chart&#39; not found in {&#39;success&#39;: True, &#39;overview&#39;: {&#39;highest countries&#39;: [{&#39;country&#39;: &#39;Iceland&#39;, &#39;value&#39;: 78.5}, {&#39;country&#39;: &#39;Norway&#39;, &#39;value&#39;: 69.2}], &#39;lowest countries&#39;: [{&#39;country&#39;: &#39;Qatar&#39;, &#39;value&#39;: 0.2}, {&#39;country&#39;: &#39;Kuwait&#39;, &#39;value&#39;: 0.5}], &#39;global stats&#39;: {&#39;min&#39;: 0.1, &#39;max&#39;: 98.5, &#39;mean&#39;: 18.3, &#39;median&#39;: 15.2, &#39;std&#39;: 20.1, &#39;total countries&#39;: 180, &#39;years range&#39;: &#39;1995-2020&#39;}, &#39;global trend&#39;: 5.6}}</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get feature importance error - AssertionError: True is not false</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                    </ul>
+                </details>            </div>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âŒ app/test/unit/test_data_model.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataModel - Alternatif model katmani testleri</p>
+                <p><strong>Toplam Test:</strong> 23 | <strong>BaÅŸarÄ±lÄ±:</strong> 19 | <strong>BaÅŸarÄ±sÄ±z:</strong> 4 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 82.6%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #4caf50; font-weight: bold;">âœ… BaÅŸarÄ±lÄ± Testler (19)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li><strong>Kategori: Bilgi Getirme</strong>
+                            <ul>                                <li style="color: #4caf50;">+ get countries empty data</li>                                <li style="color: #4caf50;">+ get countries returns list</li>                                <li style="color: #4caf50;">+ get country data invalid country</li>                                <li style="color: #4caf50;">+ get country data valid country</li>                                <li style="color: #4caf50;">+ init with valid csv path</li>                                <li style="color: #4caf50;">+ init without csv path</li>                                <li style="color: #4caf50;">+ load data success</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Genel</strong>
+                            <ul>                                <li style="color: #4caf50;">+ compare countries empty list</li>                                <li style="color: #4caf50;">+ compare countries valid countries</li>                                <li style="color: #4caf50;">+ get feature importance global</li>                                <li style="color: #4caf50;">+ get feature importance valid country</li>                                <li style="color: #4caf50;">+ get model metrics global</li>                                <li style="color: #4caf50;">+ get overview data structure</li>                                <li style="color: #4caf50;">+ get top countries highest</li>                                <li style="color: #4caf50;">+ get top countries lowest</li>                                <li style="color: #4caf50;">+ melt data conversion</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Model Islemleri</strong>
+                            <ul>                                <li style="color: #4caf50;">+ predict future without training</li>                                <li style="color: #4caf50;">+ train model insufficient data</li>                                <li style="color: #4caf50;">+ train model invalid country</li>                            </ul>
+                        </li>                    </ul>
+                </details>                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #f44336; font-weight: bold;">âŒ BaÅŸarÄ±sÄ±z Testler (4)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li style="color: #f44336;">
+                            <strong>- get model metrics valid country</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- model caching</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- predict future valid inputs</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- train model valid country</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                    </ul>
+                </details>            </div>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âŒ app/test/unit/test_data_service.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataService - Veri yukleme, isleme ve model egitimi testleri</p>
+                <p><strong>Toplam Test:</strong> 36 | <strong>BaÅŸarÄ±lÄ±:</strong> 33 | <strong>BaÅŸarÄ±sÄ±z:</strong> 3 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 91.7%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #4caf50; font-weight: bold;">âœ… BaÅŸarÄ±lÄ± Testler (33)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li><strong>Kategori: Bilgi Getirme</strong>
+                            <ul>                                <li style="color: #4caf50;">+ get countries comparison insufficient countries</li>                                <li style="color: #4caf50;">+ get countries comparison invalid country</li>                                <li style="color: #4caf50;">+ get countries comparison valid countries</li>                                <li style="color: #4caf50;">+ get countries returns list</li>                                <li style="color: #4caf50;">+ get country data invalid country</li>                                <li style="color: #4caf50;">+ get country data stats structure</li>                                <li style="color: #4caf50;">+ get country data valid country</li>                                <li style="color: #4caf50;">+ init with valid csv path</li>                                <li style="color: #4caf50;">+ init without csv path</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Genel</strong>
+                            <ul>                                <li style="color: #4caf50;">+ cached prediction</li>                                <li style="color: #4caf50;">+ data loading handles encoding errors</li>                                <li style="color: #4caf50;">+ data preprocessing handles missing values</li>                                <li style="color: #4caf50;">+ get cached prediction existing</li>                                <li style="color: #4caf50;">+ get cached prediction nonexistent</li>                                <li style="color: #4caf50;">+ get data overview structure</li>                                <li style="color: #4caf50;">+ get feature importance global</li>                                <li style="color: #4caf50;">+ get feature importance valid country</li>                                <li style="color: #4caf50;">+ get model metrics valid country</li>                                <li style="color: #4caf50;">+ get model metrics without training</li>                                <li style="color: #4caf50;">+ single country data</li>                                <li style="color: #4caf50;">+ single year data</li>                                <li style="color: #4caf50;">+ very large values</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Hesaplama</strong>
+                            <ul>                                <li style="color: #4caf50;">+ calculate global trend with empty data</li>                                <li style="color: #4caf50;">+ calculate global trend with single year</li>                                <li style="color: #4caf50;">+ calculate trend negative trend</li>                                <li style="color: #4caf50;">+ calculate trend positive trend</li>                                <li style="color: #4caf50;">+ calculate trend single data point</li>                                <li style="color: #4caf50;">+ calculate trend zero initial value</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Model Islemleri</strong>
+                            <ul>                                <li style="color: #4caf50;">+ predict future invalid country</li>                                <li style="color: #4caf50;">+ predict future valid inputs</li>                                <li style="color: #4caf50;">+ train model general</li>                                <li style="color: #4caf50;">+ train model invalid country</li>                                <li style="color: #4caf50;">+ train model valid country</li>                            </ul>
+                        </li>                    </ul>
+                </details>                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #f44336; font-weight: bold;">âŒ BaÅŸarÄ±sÄ±z Testler (3)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li style="color: #f44336;">
+                            <strong>- get countries empty data</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get data overview empty data</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- predict future invalid year</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                    </ul>
+                </details>            </div>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âŒ app/test/unit/test_data_service_boundary.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataService - Veri yukleme, isleme ve model egitimi testleri</p>
+                <p><strong>Toplam Test:</strong> 23 | <strong>BaÅŸarÄ±lÄ±:</strong> 20 | <strong>BaÅŸarÄ±sÄ±z:</strong> 3 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 87%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #4caf50; font-weight: bold;">âœ… BaÅŸarÄ±lÄ± Testler (20)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li><strong>Kategori: Bilgi Getirme</strong>
+                            <ul>                                <li style="color: #4caf50;">+ get country data with max countries</li>                                <li style="color: #4caf50;">+ get country data with single data point</li>                                <li style="color: #4caf50;">+ get countries comparison with duplicate countries</li>                                <li style="color: #4caf50;">+ get countries comparison with empty list</li>                                <li style="color: #4caf50;">+ get countries comparison with single country</li>                                <li style="color: #4caf50;">+ get country data with empty string</li>                                <li style="color: #4caf50;">+ get country data with none</li>                                <li style="color: #4caf50;">+ get country data with whitespace</li>                                <li style="color: #4caf50;">+ load data with missing country column</li>                                <li style="color: #4caf50;">+ load data with negative values</li>                                <li style="color: #4caf50;">+ load data with special characters in country name</li>                                <li style="color: #4caf50;">+ load data with very large numbers</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Genel</strong>
+                            <ul>                                <li style="color: #4caf50;">+ get feature importance with invalid country</li>                                <li style="color: #4caf50;">+ get model metrics with invalid country</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Model Islemleri</strong>
+                            <ul>                                <li style="color: #4caf50;">+ predict future with max year</li>                                <li style="color: #4caf50;">+ predict future with min year</li>                                <li style="color: #4caf50;">+ predict future with negative year</li>                                <li style="color: #4caf50;">+ predict future with past year</li>                                <li style="color: #4caf50;">+ predict future with zero year</li>                                <li style="color: #4caf50;">+ train model with empty string country</li>                            </ul>
+                        </li>                    </ul>
+                </details>                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #f44336; font-weight: bold;">âŒ BaÅŸarÄ±sÄ±z Testler (3)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li style="color: #f44336;">
+                            <strong>- train model with minimum data</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- predict future with string year</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- load data with all nan values</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                    </ul>
+                </details>            </div>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âŒ app/test/unit/test_data_utils.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataUtils - Yardimci fonksiyon testleri</p>
+                <p><strong>Toplam Test:</strong> 30 | <strong>BaÅŸarÄ±lÄ±:</strong> 29 | <strong>BaÅŸarÄ±sÄ±z:</strong> 1 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 96.7%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #4caf50; font-weight: bold;">âœ… BaÅŸarÄ±lÄ± Testler (29)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li><strong>Kategori: Bilgi Getirme</strong>
+                            <ul>                                <li style="color: #4caf50;">+ load existing file</li>                                <li style="color: #4caf50;">+ load invalid json</li>                                <li style="color: #4caf50;">+ load nonexistent file</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Genel</strong>
+                            <ul>                                <li style="color: #4caf50;">+ insufficient data</li>                                <li style="color: #4caf50;">+ positive trend</li>                                <li style="color: #4caf50;">+ no missing years</li>                                <li style="color: #4caf50;">+ single data point</li>                                <li style="color: #4caf50;">+ with missing years</li>                                <li style="color: #4caf50;">+ custom decimal places</li>                                <li style="color: #4caf50;">+ positive percentage</li>                                <li style="color: #4caf50;">+ zero percentage</li>                                <li style="color: #4caf50;">+ large palette</li>                                <li style="color: #4caf50;">+ single color</li>                                <li style="color: #4caf50;">+ small palette</li>                                <li style="color: #4caf50;">+ zero colors</li>                                <li style="color: #4caf50;">+ neutral trend</li>                                <li style="color: #4caf50;">+ positive trend</li>                                <li style="color: #4caf50;">+ slight negative trend</li>                                <li style="color: #4caf50;">+ slight positive trend</li>                                <li style="color: #4caf50;">+ very negative trend</li>                                <li style="color: #4caf50;">+ very positive trend</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Hata Yonetimi</strong>
+                            <ul>                                <li style="color: #4caf50;">+ empty list</li>                                <li style="color: #4caf50;">+ negative trend</li>                                <li style="color: #4caf50;">+ empty data</li>                                <li style="color: #4caf50;">+ negative percentage</li>                                <li style="color: #4caf50;">+ negative trend</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Veri Islemleri</strong>
+                            <ul>                                <li style="color: #4caf50;">+ save complex data</li>                                <li style="color: #4caf50;">+ save invalid path</li>                                <li style="color: #4caf50;">+ save simple data</li>                            </ul>
+                        </li>                    </ul>
+                </details>                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #f44336; font-weight: bold;">âŒ BaÅŸarÄ±sÄ±z Testler (1)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li style="color: #f44336;">
+                            <strong>- zero initial value</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                    </ul>
+                </details>            </div>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âŒ app/test/unit/test_data_viewmodel.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataViewModel - Veri formatlama ve API hazirlama testleri</p>
+                <p><strong>Toplam Test:</strong> 25 | <strong>BaÅŸarÄ±lÄ±:</strong> 18 | <strong>BaÅŸarÄ±sÄ±z:</strong> 7 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 72%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #4caf50; font-weight: bold;">âœ… BaÅŸarÄ±lÄ± Testler (18)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li><strong>Kategori: Bilgi Getirme</strong>
+                            <ul>                                <li style="color: #4caf50;">+ get countries</li>                                <li style="color: #4caf50;">+ get countries comparison error</li>                                <li style="color: #4caf50;">+ get countries error</li>                                <li style="color: #4caf50;">+ get country data chart data structure</li>                                <li style="color: #4caf50;">+ get country data error</li>                                <li style="color: #4caf50;">+ get country data nan handling</li>                                <li style="color: #4caf50;">+ get country prediction country not found</li>                                <li style="color: #4caf50;">+ get country prediction future year validation</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Genel</strong>
+                            <ul>                                <li style="color: #4caf50;">+ get data overview error</li>                                <li style="color: #4caf50;">+ get data overview structure</li>                                <li style="color: #4caf50;">+ get feature importance global</li>                                <li style="color: #4caf50;">+ get feature importance valid country</li>                                <li style="color: #4caf50;">+ get model metrics structure</li>                                <li style="color: #4caf50;">+ viewmodel initialization with service</li>                                <li style="color: #4caf50;">+ viewmodel initialization without service</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Model Islemleri</strong>
+                            <ul>                                <li style="color: #4caf50;">+ train model error</li>                                <li style="color: #4caf50;">+ train model general</li>                                <li style="color: #4caf50;">+ train model valid country</li>                            </ul>
+                        </li>                    </ul>
+                </details>                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #f44336; font-weight: bold;">âŒ BaÅŸarÄ±sÄ±z Testler (7)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li style="color: #f44336;">
+                            <strong>- get countries comparison</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get country data</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get country data negative trend</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get country prediction</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get data overview</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get feature importance error</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                        <li style="color: #f44336;">
+                            <strong>- get model metrics</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                    </ul>
+                </details>            </div>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âœ… app/test/unit/test_data_viewmodel_boundary.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataViewModel - Veri formatlama ve API hazirlama testleri</p>
+                <p><strong>Toplam Test:</strong> 17 | <strong>BaÅŸarÄ±lÄ±:</strong> 17 | <strong>BaÅŸarÄ±sÄ±z:</strong> 0 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 100%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #4caf50; font-weight: bold;">âœ… BaÅŸarÄ±lÄ± Testler (17)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li><strong>Kategori: Bilgi Getirme</strong>
+                            <ul>                                <li style="color: #4caf50;">+ get country data with empty time series</li>                                <li style="color: #4caf50;">+ get country data with single data point</li>                                <li style="color: #4caf50;">+ get country prediction with max year</li>                                <li style="color: #4caf50;">+ get country prediction with min year</li>                                <li style="color: #4caf50;">+ get countries comparison with empty list</li>                                <li style="color: #4caf50;">+ get countries comparison with none list</li>                                <li style="color: #4caf50;">+ get countries with service error</li>                                <li style="color: #4caf50;">+ get country data with empty string</li>                                <li style="color: #4caf50;">+ get country data with none country name</li>                                <li style="color: #4caf50;">+ get country prediction with invalid year type</li>                                <li style="color: #4caf50;">+ get country prediction with negative year</li>                                <li style="color: #4caf50;">+ get country data with inf values</li>                                <li style="color: #4caf50;">+ get country data with nan values</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Genel</strong>
+                            <ul>                                <li style="color: #4caf50;">+ get model metrics with service error</li>                                <li style="color: #4caf50;">+ get data overview with empty data</li>                                <li style="color: #4caf50;">+ get feature importance with empty features</li>                            </ul>
+                        </li>                        <li><strong>Kategori: Model Islemleri</strong>
+                            <ul>                                <li style="color: #4caf50;">+ train model with service error</li>                            </ul>
+                        </li>                    </ul>
+                </details>            </div>            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">âŒ FAILED app/test/unit/test_data_model.py</h3>
+                <p style="color: #666; margin-bottom: 15px;">DataModel - Alternatif model katmani testleri</p>
+                <p><strong>Toplam Test:</strong> 1 | <strong>BaÅŸarÄ±lÄ±:</strong> 0 | <strong>BaÅŸarÄ±sÄ±z:</strong> 1 | <strong>Hatalar:</strong> 0 | <strong>Atlanan:</strong> 0 | <strong>BaÅŸarÄ± OranÄ±:</strong> 0%</p>
+                                <details style="margin-top: 10px;">
+                    <summary style="cursor: pointer; color: #f44336; font-weight: bold;">âŒ BaÅŸarÄ±sÄ±z Testler (1)</summary>
+                    <ul style="margin-left: 20px; margin-top: 10px;">                        <li style="color: #f44336;">
+                            <strong>- get model metrics valid country - AssertionError: False is not true</strong>
+                            <br><span style="color: #ff9800; font-size: 0.9em;">Hata: Bilinmeyen hata</span>
+                        </li>                    </ul>
+                </details>            </div>        </div>    </div>
+</body>
+</html>
